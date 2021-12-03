@@ -1,18 +1,19 @@
+---
 before:
   hooks:
     - go mod download
 builds:
-- env:
-  - CGO_ENABLED=0
-  goos:
-    - windows
-    - linux
-    - darwin
-  goarch:
-    - amd64
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
 archives:
-  -
-    format: zip
+  - format: zip
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
     replacements:
       amd64: x86_64
@@ -24,5 +25,5 @@ changelog:
   sort: asc
   filters:
     exclude:
-    - '^docs:'
-    - '^test:'
+      - '^docs:'
+      - '^test:'
